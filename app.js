@@ -14,8 +14,15 @@ app.get('/:name', (req, res) => {
     let name = req.params.name
     res.send({ name });
 })
-class Calculate {
+app.get('/:pheptinh/:soA/:soB', (req, res) => {
+    let { pheptinh, soA, soB } = req.params;
+    const Cal = new Calculate(pheptinh, soA, soB);
+    let result = Cal.getResult();
+    res.send({ result })
+})
 
+
+class Calculate {
     constructor(pheptinh, soA, soB) {
         this.a = soA;
         this.b = soB;
@@ -24,16 +31,15 @@ class Calculate {
     get pt() {
         if (this.pheptinh === 'cong') return '+';
         if (this.pheptinh === 'tru') return '-';
-        if (this.pheptinh === 'nha') return '*';
+        if (this.pheptinh === 'nhan') return '*';
         if (this.pheptinh === 'chia') return '/';
         throw new Error('Invalid operator!')
     }
     getResult() {
-        let r = `${this.a} ${this.pt} ${this.b}` // a + b
+        let r = `${this.a} ${this.pt} ${this.b}` // '2 + 3'
         return eval(r);
     }
 }
-
 let cal = new Calculate('cong', 2, 3);
 console.log(cal.getResult());
 
