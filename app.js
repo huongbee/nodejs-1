@@ -15,10 +15,14 @@ app.get('/:name', (req, res) => {
     res.send({ name });
 })
 app.get('/:pheptinh/:soA/:soB', (req, res) => {
-    let { pheptinh, soA, soB } = req.params;
-    const Cal = new Calculate(pheptinh, soA, soB);
-    let result = Cal.getResult();
-    res.send({ result })
+    try {
+        let { pheptinh, soA, soB } = req.params;
+        const Cal = new Calculate(pheptinh, soA, soB);
+        let result = Cal.getResult();
+        res.send({ result })
+    } catch (error) {
+        res.send({ error: error.message })
+    }
 })
 
 
