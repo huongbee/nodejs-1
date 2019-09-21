@@ -19,9 +19,18 @@ class Calculate {
     constructor(pheptinh, soA, soB) {
         this.a = soA;
         this.b = soB;
+        this.pheptinh = pheptinh;
+    }
+    get pt() {
+        if (this.pheptinh === 'cong') return '+';
+        if (this.pheptinh === 'tru') return '-';
+        if (this.pheptinh === 'nha') return '*';
+        if (this.pheptinh === 'chia') return '/';
+        throw new Error('Invalid operator!')
     }
     getResult() {
-        return this.a + this.b;
+        let r = `${this.a} ${this.pt} ${this.b}` // a + b
+        return eval(r);
     }
 }
 
