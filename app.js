@@ -14,6 +14,21 @@ app.get('/:name', (req, res) => {
     let name = req.params.name
     res.send({ name });
 })
+class Calculate {
+
+    constructor(pheptinh, soA, soB) {
+        this.a = soA;
+        this.b = soB;
+    }
+    getResult() {
+        return this.a + this.b;
+    }
+}
+
+let cal = new Calculate('cong', 2, 3);
+console.log(cal.getResult());
+
+
 /**
  * cho đường dẫn: http://localhost:3000/cong/3/4
  * Trong đó:
