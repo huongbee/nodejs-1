@@ -12,5 +12,5 @@ app.get('/', (req, res) => {
 app.get('/:name', (req, res) => {
     // let name = req.param('name')
     let name = req.params.name
-
+    res.send({ name });
 })
