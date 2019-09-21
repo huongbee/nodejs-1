@@ -8,3 +8,9 @@ app.get('/', (req, res) => {
         name: 'Teo'
     })
 })
+
+app.get('/:name', (req, res) => {
+    // let name = req.param('name')
+    let name = req.params.name
+
+})
