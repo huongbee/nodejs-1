@@ -22,6 +22,7 @@ function check(req, res, next) {
     }
     next();
 }
+
 app.get('/:pheptinh/:soA/:soB', check, (req, res) => {
     try {
         let { pheptinh, soA, soB } = req.params;
