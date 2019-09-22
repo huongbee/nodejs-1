@@ -14,6 +14,7 @@ app.get('/:name', (req, res) => {
     let name = req.params.name
     res.send({ name });
 })
+
 function check(req, res, next) {
     const { soA, soB } = req.params;
     if (isNaN(soA) || isNaN(soB)) {
@@ -32,6 +33,17 @@ app.get('/:pheptinh/:soA/:soB', check, (req, res) => {
     } catch (error) {
         res.send({ error: error.message })
     }
+})
+app.get('/kiemtratuoi/:tuoi', (req, res, next) => {
+    const tuoi = req.params.tuoi;
+    if (tuoi < 10) {
+        res.send('Ban chua du tuoi');
+        return;
+    }
+    next();
+}, (req, res) => {
+    const tuoi = req.params.tuoi;
+    res.send({ tuoi })
 })
 
 
@@ -53,8 +65,8 @@ class Calculate {
         return eval(r);
     }
 }
-let cal = new Calculate('cong', 2, 3);
-console.log(cal.getResult());
+// let cal = new Calculate('cong', 2, 3);
+// console.log(cal.getResult());
 
 
 /**
