@@ -14,7 +14,15 @@ app.get('/:name', (req, res) => {
     let name = req.params.name
     res.send({ name });
 })
-app.get('/:pheptinh/:soA/:soB', (req, res) => {
+function check(req, res, next) {
+    const { soA, soB } = req.params;
+    if (isNaN(soA) || isNaN(soB)) {
+        res.send('Error!');
+        return;
+    }
+    next();
+}
+app.get('/:pheptinh/:soA/:soB', check, (req, res) => {
     try {
         let { pheptinh, soA, soB } = req.params;
         const Cal = new Calculate(pheptinh, soA, soB);
