@@ -12,6 +12,7 @@ function kiemtraDangnhap(req, res, next) {
         res.send('Invalid password!');
         return;
     }
+    req.params.username = "Nguyen Van A";
     next()
 }
 app.get('/login/:username/:password', kiemtraDangnhap, (req, res) => {
